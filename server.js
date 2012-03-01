@@ -1,6 +1,8 @@
 var fs = require('fs');
 var winston = require('winston');
-var ProxyServer = require('./lib/proxy_server');
+var ConnectionManager = require('./lib/connection_manager');
+var PushServer = require('./lib/push_server');
+var BindServer = require('./lib/bind_server');
 
 // Load the configuration
 var config = JSON.parse(fs.readFileSync('./config.json'));
@@ -15,7 +17,7 @@ for (var i = 0; i < config.logging.length; i++) {
   winston.add(winston.transports[type], detail);
 }
 
-
-// Create a new server and start it
-var server = new ProxyServer(config);
-server.start();
+// Create the servers and start them up
+var connectionManager = new ConnectionManager();
+new BindServer(config, connectionManager).start();
+new PushServer(config, connectionManager).start();

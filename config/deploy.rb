@@ -10,7 +10,7 @@ set :rvm_type, :system
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-set :application, "socket.io-proxy"
+set :application, "socketio"
 set :repository,  "git@github.com:brewster/socket.io-proxy.git"
 set :scm, :git
 set :user, ENV['BREWSTER_USER'] || ENV['USER']
@@ -127,21 +127,24 @@ namespace :deploy do
       servers = find_servers_for_task(current_task)
       servers.each_slice(concurrent_restarts) do |group|
         filter_hosts(group) do
-          logger.info "\e[0;31;1mNOTICE:\e[0m Disabling monitoring for #{group} via => monit unmonitor prod_nodejs_socketio"
-          run "#{sudo :as => "root"} monit unmonitor prod_nodejs_socketio", :hosts => group
-  
-          logger.info "\e[0;31;1mNOTICE:\e[0m Draining #{group} from VIP and sleeping"
-          run "echo 500 >#{shared_path}/config/code", :hosts => group
-  
-          sleep 30
-  
-          logger.info "\e[0;31;1mNOTICE:\e[0m Restarting #{group} via => monit restart prod_nodejs_socketio"
+          # TEMP
           run "#{sudo :as => "root"} monit restart prod_nodejs_socketio", :hosts => group
+          sleep 10
+          #logger.info "\e[0;31;1mNOTICE:\e[0m Disabling monitoring for #{group} via => monit unmonitor prod_nodejs_socketio"
+          #run "#{sudo :as => "root"} monit unmonitor prod_nodejs_socketio", :hosts => group
   
-          logger.info "\e[0;31;1mNOTICE:\e[0m Re-enabling #{group} in VIP"
-          run "echo 200 >#{shared_path}/config/code", :hosts => group
+          #logger.info "\e[0;31;1mNOTICE:\e[0m Draining #{group} from VIP and sleeping"
+          #run "echo 500 >#{shared_path}/config/code", :hosts => group
   
-          sleep 2
+          #sleep 30
+  
+          #logger.info "\e[0;31;1mNOTICE:\e[0m Restarting #{group} via => monit restart prod_nodejs_socketio"
+          #run "#{sudo :as => "root"} monit restart prod_nodejs_socketio", :hosts => group
+  
+          #logger.info "\e[0;31;1mNOTICE:\e[0m Re-enabling #{group} in VIP"
+          #run "echo 200 >#{shared_path}/config/code", :hosts => group
+  
+          #sleep 2
         end
       end
     elsif rails_env == 'staging'

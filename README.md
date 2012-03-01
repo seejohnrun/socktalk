@@ -1,4 +1,4 @@
-# SocketIO Proxy
+# socktalk (a socket.io proxy)
 
 This is a proxy for socket-io, meant to sit alongside a web application
 and act as a proxy for all web socket requests.  This allows our web application
@@ -63,8 +63,10 @@ are specified in `config.json` in a standard distribution.
 * `encoding` - The encoding to use to receive request bodies
 * `bind.host` - The host for the bind server
 * `bind.port` - The port for the bind server
+* `bind.ssl.*` - The SSL configuration for the bind server
 * `push.host` - The host for the push server
 * `push.port` - The port for the push server
+* `push.ssl.*` - The SSL configuration for the push server
 * `socket.io.*` - Socket.io configurations
 * `logging.*` - An array of logging settings
 

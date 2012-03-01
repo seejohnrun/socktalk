@@ -11,7 +11,7 @@ set :rvm_type, :system
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 set :application, "socketio"
-set :repository,  "git@github.com:brewster/socket.io-proxy.git"
+set :repository,  "git@github.com:brewster/socktalk.git"
 set :scm, :git
 set :user, ENV['BREWSTER_USER'] || ENV['USER']
 set :deploy_via, :remote_cache

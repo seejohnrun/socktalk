@@ -13,6 +13,6 @@
   },
 
   "scripts": {
-    "test": "mocha -r should"
+    "test": "mocha -r should -R list"
   }
 }

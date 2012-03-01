@@ -1,5 +1,7 @@
 {
 
+  "encoding": "utf8",
+
   "socket.io": {
     "log level": -1,
     "origins": "*:*"

@@ -2,6 +2,16 @@
 
   "encoding": "utf8",
 
+  "bind": {
+    "host": "localhost",
+    "port": 8888
+  },
+
+  "push": {
+    "host": "localhost",
+    "port": 9999
+  },
+
   "socket.io": {
     "log level": -1,
     "origins": "*:*"

@@ -1,0 +1,11 @@
+{
+
+  "logging": [
+    {
+      "type": "Console",
+      "colorize": true,
+      "level": "verbose"
+    }
+  ]
+
+}

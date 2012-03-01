@@ -18,28 +18,20 @@ set :deploy_via, :remote_cache
 set :use_sudo, true
 set :admin_runner, "root"
 set :keep_releases, 3
-set :concurrent_restarts, 2
+set :concurrent_restarts, 1
 set :deploy_lockfile, "#{shared_path}/log/deploy_lockfile.txt"
 
 task :production do
   set :rails_env, "production"
   set :branch, 'production'
-  #server 'prod-dims-r01', :app, :db, :primary => true
-  #server 'prod-dims-r02', :app
-  #server 'prod-dims-r03', :app
-  #server 'prod-dims-r04', :app
-  #server 'prod-dims-r05', :app
-  #server 'prod-dims-r06', :app
-  #server 'prod-dims-r07', :app
-  #server 'prod-dims-r08', :app
-  #server 'prod-dims-r09', :app
-  #server 'prod-dims-r10', :app
+  server 'prod-sockio-r01', :app
+  server 'prod-sockio-r02', :app
 end
 
 task :staging do
   set :rails_env, "staging"
   set :branch, 'staging'
-  server 'staging-fe-r01', :app, :db, :primary => true
+  server 'staging-fe-r01', :app
 end
 
 # Lock deploy, :migrations, :pre_migrations

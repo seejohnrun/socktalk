@@ -13,6 +13,7 @@ describe('ConfigurableServer', function () {
     });
 
   });
+
   describe('with asking for ssl', function () {
 
     var config = { host: 'localhost', port: 8888, ssl: true };

@@ -1,4 +1,5 @@
-var BindServer = require('../lib/bind_server');
+var libpath = process.env['SOCKTALK_COV'] ? '../lib-cov' : '../lib';
+var BindServer = require(libpath + '/bind_server');
 var helpers = require('./helpers');
 
 describe('BindServer', function () {

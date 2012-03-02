@@ -1,5 +1,6 @@
+var libpath = process.env['SOCKTALK_COV'] ? '../lib-cov' : '../lib';
+var configurable_server = require(libpath + '/configurable_server');
 var assert = require('assert');
-var configurable_server = require('../lib/configurable_server');
 
 describe('ConfigurableServer', function () {
 

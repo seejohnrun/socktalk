@@ -1,4 +1,5 @@
-var PushServer = require('../lib/push_server');
+var libpath = process.env['SOCKTALK_COV'] ? '../lib-cov' : '../lib';
+var PushServer = require(libpath + '/push_server');
 var helpers = require('./helpers');
 
 describe('PushServer', function () {

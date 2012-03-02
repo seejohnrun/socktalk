@@ -1,4 +1,5 @@
-var ConnectionManager = require('../lib/connection_manager');
+var libpath = process.env['SOCKTALK_COV'] ? '../lib-cov' : '../lib';
+var ConnectionManager = require(libpath + '/connection_manager');
 var FakeSocket = require('./helpers').FakeSocket;
 
 describe('ConnectionManager', function () {

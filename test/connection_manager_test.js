@@ -3,6 +3,23 @@ var FakeSocket = require('./helpers').FakeSocket;
 
 describe('ConnectionManager', function () {
 
+  describe('when a socket auths and then disconnects', function () {
+
+    var manager = new ConnectionManager();
+    var ident = 'ident';
+
+    before(function () {
+      var client = new FakeSocket(ident);
+      manager.add(client);
+      client.disconnect();
+    });
+
+    it('should have no client for that identity', function () {
+      manager.connections[ident].length.should.equal(0);
+    });
+
+  });
+
   describe('when a socket auths with an identity', function () {
 
     var manager = new ConnectionManager();

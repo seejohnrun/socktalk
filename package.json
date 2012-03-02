@@ -28,7 +28,7 @@
   },
 
   "scripts": {
-    "test": "mocha -r should -R list"
+    "test": "mocha -r should -R spec"
   },
 
   "engines": {

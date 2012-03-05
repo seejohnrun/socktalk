@@ -126,4 +126,41 @@ describe('PushServer', function () {
 
   });
 
+  describe('(integration) when starting a real server', function () {
+
+    var host = 'localhost';
+    var port = 8888;
+    var pushServer = new PushServer({
+      push: {
+        host: host,
+        port: port,
+        ssl: false
+      }
+    });
+
+    before(function (done) {
+      pushServer.start(function () {
+        done();
+      });
+    });
+
+    describe('when taking a request', function (done) {
+      var request = require('http').request({
+        host: host,
+        port: port,
+        method: 'get',
+        path: '/'
+      });
+      request.on('response', function (res) {
+        res.statusCode.should.equal(404);
+        done();
+      });
+    });
+
+    after(function () {
+      pushServer.stop();
+    });
+
+  });
+
 });

@@ -71,3 +71,10 @@ are specified in `config.json` in a standard distribution.
 * `logging.*` - An array of logging settings
 
 The encoding to use for bodies sent to clients
+
+## Running the tests
+
+To run the tests for socktalk, you can check out the code and then run either
+`npm test` or `make`.
+
+To generate a coverage report, use `make coverage`.

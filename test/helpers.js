@@ -9,7 +9,7 @@ try {
 
 // A fake connection manager
 
-var FakeConnectionManager = function (receiver) {
+var FakeConnectionManager = function () {
 };
 
 FakeConnectionManager.prototype = {
@@ -70,15 +70,23 @@ FakeResponse.prototype = {
 
 };
 
-// A fake client to help in tests
+// A fake socket to help in tests
 
 var FakeSocket = function (ident) {
   this.id = Math.floor(Math.random() * 100000);
   this.ident = ident;
+  this.called = undefined;
   this.on('identify', this.identity.bind(this));
 };
 
 FakeSocket.prototype = new events.EventEmitter;
+
+// Track last emit
+var oldEmit = FakeSocket.prototype.emit;
+FakeSocket.prototype.emit = function (message, data) {
+  this.called = { message: message, data: data };
+  oldEmit.bind(this)(message, data);
+};
 
 FakeSocket.prototype.identity = function () {
   this.emit('identity', this.ident);
@@ -88,11 +96,18 @@ FakeSocket.prototype.disconnect = function () {
   this.emit('disconnect');
 };
 
+// A fake Socket server
+
+var FakeSocketServer = function () {
+  this.sockets = new FakeSocket()
+};
+
 // Export
 
 module.exports = {
   FakeSocket: FakeSocket,
   FakeConnectionManager: FakeConnectionManager,
   FakeRequest: FakeRequest,
-  FakeResponse: FakeResponse
+  FakeResponse: FakeResponse,
+  FakeSocketServer: FakeSocketServer
 };

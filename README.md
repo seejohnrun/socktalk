@@ -1,8 +1,9 @@
 # socktalk (a socket.io proxy)
 
 This is a proxy for socket-io, meant to sit alongside a web application
-and act as a proxy for all web socket requests.  This allows our web application
-to largely treat web sockets open by a user like _push_ notifications.
+and act as a proxy for all web socket requests.  This allows our web
+application to largely treat web sockets open by a user like _push_
+notifications.
 
 ## Usage
 
@@ -15,8 +16,8 @@ $ npm install
 $ npm start
 ```
 
-Once you have the server running, you can send events to it.  By default, messages
-sent go to all clients, so
+Once you have the server running, you can send events to it.  By default,
+messages sent go to all clients, so
 
 ``` bash
 $ curl -XPOST http://push.lvh.me:9999/news -d"word"
@@ -24,20 +25,21 @@ $ curl -XPOST http://push.lvh.me:9999/news -d"word"
 
 would send the signal `news` to all registered clients with `word` as the body.
 
-You can use headers to specify a single (or multiple, comma-separated) individual
-identifiers to send to.  Messages will be sent to all registered sockets for the
-specified identifiers:
+You can use headers to specify a single (or multiple, comma-separated)
+individual identifiers to send to.  Messages will be sent to all registered
+sockets for the specified identifiers:
 
 ``` bash
-$ curl -XPOST http://push.lvh.me:9999/news -d"word" -H"X-Notify-Identity:something"
+$ curl -XPOST http://push.lvh.me:9999/news \
+  -d"word" -H"X-Notify-Identity:something"
 ```
 
 ### Client
 
-Once you have your server running, we need to connect to it.  The first thing to do
-is add `socket.io-client` and then add an identity on page load.  This registers
-your client with `socket.io-proxy`.  The identity should be something your server-side
-knows:
+Once you have your server running, we need to connect to it.  The first thing
+to do is add `socket.io-client` and then add an identity on page load.  This
+registers your client with `socket.io-proxy`.  The identity should be something
+your server-side knows:
 
 ``` javascript
 var socket = io.connect('http://:localhost:8888');
@@ -46,8 +48,8 @@ socket.on('identify', function () {
 });
 ```
 
-Once you're connected - its as easy as binding to events and handling the data that
-comes in:
+Once you're connected - its as easy as binding to events and handling the data
+that comes in:
 
 ``` javascript
 socket.on('something', function (data) {

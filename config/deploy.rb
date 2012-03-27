@@ -11,8 +11,6 @@ set :rvm_type, :system
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 set :application, "socketio"
-#set :repository,  "git@github.com:brewster/socktalk.git"
-set :repository, "git://git-r01.ihost.brewster.com/git/socktalk.git"
 set :scm, :git
 set :user, ENV['BREWSTER_USER'] || ENV['USER']
 set :deploy_via, :remote_cache
@@ -33,6 +31,13 @@ task :staging do
   set :rails_env, "staging"
   set :branch, 'staging'
   server 'staging-fe-r01', :app
+end
+
+# Set repo via env, git-r01 as default
+if ENV['REPO'] == 'github'
+  set :repository, "git@github.com:brewster/socktalk.git"
+else
+  set :repository, "git://git-r01.ihost.brewster.com/git/socktalk.git"
 end
 
 # Lock deploy, :migrations, :pre_migrations

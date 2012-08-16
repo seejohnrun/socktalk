@@ -1,6 +1,21 @@
 {
+
   "name": "socktalk",
   "version": "0.0.1",
+
+  "description": "a socket.io proxy server",
+  "keywords": ["socket.io", "server", "web sockets"],
+
+  "homepage": "https://github.com/brewster/socktalk",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brewster/socktalk"
+  },
+
+  "directories": {
+    "lib": "./lib"
+  },
 
   "dependencies": {
     "winston": "~ 0.5.10",
@@ -8,11 +23,18 @@
   },
 
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "mocha": "~ 0.13.0",
+    "should": "~ 0.5.1"
   },
 
   "scripts": {
-    "test": "mocha -r should -R list"
-  }
+    "test": "mocha -r should -R spec"
+  },
+
+  "engines": {
+    "node": "0.6"
+  },
+
+  "author": "John Crepezzi <john.crepezzi@gmail.com>"
+
 }
